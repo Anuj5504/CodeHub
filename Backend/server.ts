@@ -1,7 +1,7 @@
 import "dotenv/config";
 import app from "./app";
-import { pool } from "./config/db/postgres";
-import { redis } from "./config/db/redis";
+import { pool } from "./db/postgres";
+import { redis } from "./config/redis";
 
 async function startServer() {
     try {
