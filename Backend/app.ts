@@ -4,6 +4,9 @@ import helmet from "helmet";
 import { pool } from "./db/postgres";
 import { redis } from "./config/redis";
 import "dotenv/config";
+import userRouter from "./modules/users/user.routes";
+import { notFoundHandler } from "./middleware/not-found.middleware";
+import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
 
@@ -35,5 +38,10 @@ app.get("/api/ready", async (_req, res) => {
         });
     }
 });
+
+app.use("/api/users", userRouter);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 export default app;
